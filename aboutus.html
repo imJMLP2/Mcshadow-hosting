@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Start of head -->
+    <!-- css & script -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="./scripts/script.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.52.0/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    
+
+
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+    <!-- Title -->
+    <title>ByKangaroo.</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./images/bykangaroo.svg" />
+    <!-- The end of head -->
+
+
+  </head>
+  <body> 
+
+    <!-- page preloader start -->
+    <div id="preloader"></div>
+    <!-- page preloader end -->
+
+    <!-- scrollbar left start -->
+
+    <div
+    class="float-text "
+    style="background-size: cover; background-repeat: no-repeat"
+  >
+
+  <div
+  class="scrollbar-v "
+  style="background-size: cover; background-repeat: no-repeat; height: 0px"
+></div>
+
+    <span><a onclick="scrollToSection('#hero')" class="hover:text-blue-300">Scroll to top</a></span>
+  </div>
+
+    <!-- scrollbar left end -->
+  
+    <div class="background">
+        <div class="padd">
+
+<!-- navbar component start -->
+
+<div class="w-full text-gray-200 dark-mode:text-gray-200 dark-mode:bg-gray-800 bg-gray-900 custom-rounded">
+  <div x-data="{ open: false }" class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+    <div class="p-4 flex flex-row items-center justify-between">
+      
+      <!-- navbar logo -->
+      <a href="index.html" class="flex title-font font-medium items-center text-white md:mb-0">
+        <img src="./images/logo-resized.png" alt="Logo" width="200" height="140" class="pb-4 pt-4" draggable="false" />
+      </a>
+      <!-- navbar logo -->
+
+      <button class="md:hidden rounded-lg focus:outline-none focus:shadow-outline" @click="open = !open">
+        <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+          <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+          <path x-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+      </button>
+    </div>
+    <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
+      
+      <a class="px-2 py-4 mt-4 text-base text-gray-400  dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-500 focus:text-gray-500  focus:text-gray-500 focus:outline-none focus:shadow-outline" 
+      href="home.html">Home</a>
+      
+      <a class="px-2 py-4 mt-4 text-base font-semibold  text-white dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-500 focus:text-gray-500  focus:text-gray-500 focus:outline-none focus:shadow-outline" 
+      href="aboutus.html">About Us</a>
+
+      <a class="px-2 py-4 mt-4 text-base text-gray-400 dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-500 focus:text-gray-500  focus:text-gray-500 focus:outline-none focus:shadow-outline" 
+      href="plans.html">Plans</a>
+
+            <!-- dropdown start (new) -->
+            
+      <div @click.away="open = false" class="relative" x-data="{ open: false }">
+
+        <button @click="open = !open" class="flex flex-row items-center w-full px-4 py-4 mt-4 text-base text-left bg-transparent dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 text-gray-400 hover:text-white focus:text-white focus:outline-none focus:shadow-outline">
+          <span>Other</span>
+          <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+
+        <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="lg:absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+          <div class="px-2 py-2 bg-gray-800 rounded-md shadow dark-mode:bg-gray-800">
+            
+            <a class="block px-4 py-4 mt-4 text-base bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-500 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" 
+            href="terms.html">Terms of Service</a>
+
+            <a class="block px-4 py-4 mt-4 text-base bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-500 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" 
+            href="faq.html">FAQ</a>
+
+            <a class="block px-4 py-4 mt-4 text-base bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-500 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" 
+            href="#">Policy Terms</a>
+            
+          </div>
+        </div>
+            <!-- dropdown end -->
+            
+      </div>    
+
+            <!-- dropdown button (new) -->
+            
+            <div @click.away="open = false" class="relative" x-data="{ open: false }">
+
+              <button @click="open = !open" class="button-login flex flex-row items-center w-full px-4 py-4 mt-4 text-base text-left   md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-300 focus:text-gray-300 focus:outline-none focus:shadow-outline">
+                <span><svg xmlns="http://www.w3.org/2000/svg" class="inline hover:text-gray-300 focus:text-gray-300" width="15px" height="15px" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 1C8.96243 1 6.5 3.46243 6.5 6.5C6.5 9.53757 8.96243 12 12 12C15.0376 12 17.5 9.53757 17.5 6.5C17.5 3.46243 15.0376 1 12 1Z" fill="white"/>
+                  <path d="M7 14C4.23858 14 2 16.2386 2 19V22C2 22.5523 2.44772 23 3 23H21C21.5523 23 22 22.5523 22 22V19C22 16.2386 19.7614 14 17 14H7Z" fill="white"/>
+                  </svg>
+                  Login</span>
+                <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              </button>
+      
+              <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                <div class="px-2 py-2 bg-gray-800 rounded-md shadow dark-mode:bg-gray-800">
+                  
+                  <a class="block px-4 py-4 mt-4 text-base bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-500 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" 
+                  href="#">
+                  Game Panel                
+                  <p3 class="text-gray-500"><br>Manager your Game Panel etc</p3></a>
+      
+                  <a class="block px-4 py-4 mt-4 text-base bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-500 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" 
+                  href="#">VPS Panel               
+                  <p3 class="text-gray-500"><br>Manage your VPS panel and stats</p3></a>
+      
+                  <a class="block px-4 py-4 mt-4 text-base bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-500 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" 
+                  href="#">Billing Panel                 
+                   <p3 class="text-gray-500">Manage your Billing and Support tickets</p3></a>
+
+                  
+                </div>
+              </div>
+                  <!-- dropdown button end -->
+
+    </nav>
+  </div>
+</div>
+
+<!-- navbar component end -->
+
+<!-- faq section-->
+
+<section>
+
+  <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+    
+    <p class="px-8 mt-1 mb-1 text-lg">
+      <p class="mainfont font-bold">
+        Our Mission Map</h3> </p></p>
+    <div class="text-center lg:w-2/3 w-full">
+      <h1 class="span-header">About us <span class="your-header"> our mission</span> and vision.</h1>
+</div>
+
+<p class="mx-auto mt-4 max-w-xl sm:text-xl/relaxed text-center" style="color: #E1E1E1;">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+  eiusmod tempor incididuntut labore et dolore magna aliqua. Ut enim ad
+  minim veniam, quis nostrudexercitation ullamco laboris nisi ut aliquip ex
+  ea commodo consequat. Lorem ipsum dolor sit amet consectetur.
+</p>
+<img src="./images/placeholdermg.png" alt="" class="w-full" draggable="false" />
+</div>
+</div></div>
+
+
+
+<!-- mission map section -->
+
+        
+<div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+    
+  <p class="px-8 mt-1 mb-1 text-lg">
+    <p class="mainfont font-bold">
+      Our Mission Map</h3> </p></p>
+  <div class="text-center lg:w-2/3 w-full">
+    <h1 class="span-header">About us <span class="your-header"> our mission</span> and vision.</h1>
+</div></div></div>
+
+<section class="text-gray-400  body-font" id="hero">
+  <div class="reveal">
+  <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+    <div class="flex flex-wrap w-full">
+      <div class="lg:w-2/5 md:w-1/2 md:pr-10 md:py-6">
+        <div class="flex relative pb-12">
+          <div class="h-full w-10 absolute inset-0 flex items-center justify-center">
+            <div class="h-full w-1 bg-gray-800 pointer-events-none"></div>
+          </div>
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500 inline-flex items-center justify-center text-white relative z-10">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+
+
+          
+          <div class="flex-grow pl-4">
+            <h2 class="font-medium title-font text-sm text-white mb-1 tracking-wider">STEP 1</h2>
+            <p class="leading-relaxed">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea debitis cupiditate nulla,</p>
+          </div>
+        </div>
+
+
+        
+        <div class="flex relative pb-12">
+          <div class="h-full w-10 absolute inset-0 flex items-center justify-center">
+            <div class="h-full w-1 bg-gray-800 pointer-events-none"></div>
+          </div>
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500 inline-flex items-center justify-center text-white relative z-10">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+          <div class="flex-grow pl-4">
+            <h2 class="font-medium title-font text-sm text-white mb-1 tracking-wider">STEP 2</h2>
+            <p class="leading-relaxed">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea debitis cupiditate nulla.</p>
+          </div>
+        </div>
+        <div class="flex relative pb-12">
+          <div class="h-full w-10 absolute inset-0 flex items-center justify-center">
+            <div class="h-full w-1 bg-gray-800 pointer-events-none"></div>
+          </div>
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500 inline-flex items-center justify-center text-white relative z-10">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+              <circle cx="12" cy="5" r="3"></circle>
+              <path d="M12 22V8M5 12H2a10 10 0 0020 0h-3"></path>
+            </svg>
+          </div>
+          <div class="flex-grow pl-4">
+            <h2 class="font-medium title-font text-sm text-white mb-1 tracking-wider">STEP 3</h2>
+            <p class="leading-relaxed">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea debitis cupiditate nulla.</p>
+          </div>
+        </div>
+        <div class="flex relative pb-12">
+          <div class="h-full w-10 absolute inset-0 flex items-center justify-center">
+            <div class="h-full w-1 bg-gray-800 pointer-events-none"></div>
+          </div>
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500 inline-flex items-center justify-center text-white relative z-10">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="flex-grow pl-4">
+            <h2 class="font-medium title-font text-sm text-white mb-1 tracking-wider">STEP 4</h2>
+            <p class="leading-relaxed">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea debitis cupiditate nulla.</p>
+          </div>
+        </div>
+        <div class="flex relative">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500 inline-flex items-center justify-center text-white relative z-10">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+              <path d="M22 4L12 14.01l-3-3"></path>
+            </svg>
+          </div>
+          <div class="flex-grow pl-4">
+            <h2 class="font-medium title-font text-sm text-white mb-1 tracking-wider">FINISH</h2>
+            <p class="leading-relaxed">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea debitis cupiditate nulla.</p>
+          </div>
+        </div>
+      </div>
+      <img class="lg:w-2/5 md:w-1/2 object-cover object-center rounded-lg md:mt-0 mt-12" src="./images/render3.png" alt="render">
+
+  
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- mission map section end -->
+
+
+
+
+
+<header class="text-white">
+  <!-- Container -->
+  <div class="px-5 py-16 md:px-10 md:py-24 lg:py-32">
+    <!-- Component -->
+    <div class="mx-auto max-w-7xl rounded-xl bgurl bg-cover bg-center bg-no-repeat py-20 text-center max-[479px]:px-2">
+      <!-- Heading Text -->
+      <div class="mx-auto mb-6 max-w-[720px] md:mb-12">
+        <h2 class="mb-4 text-3xl font-semibold md:text-5xl ">
+          <span class="bg-[url('https://assets.website-files.com/63904f663019b0d8edf8d57c/6391a5b04f2836ad87dcc3bc_Rectangle%20773.svg')] bg-cover bg-center px-4 text-white">
+            Learn more</span>about our Pricing
+        </h2>
+        <div class="">
+          <p class="text-[#e0e0e0]">Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna</p>
+        </div>
+      </div>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Explore our amazing offer!
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- text section start -->
+
+<section class="span-bg relative overflow-hidden z-1">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+      <div class="max-w-screen-md mb-8 lg:mb-16">
+          <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-white dark:text-white">Designed for business teams like yours</h2>
+          <p class="text-gray-500 sm:text-xl dark:text-gray-400">Our panel is meticulously tailored to ensure unparalleled versatility! Whether it's managing various states or onboarding new collaborators, we've designed it to accommodate every need seamlessly. With our customizable features, navigating through different stages and <strong class="font-semibold text-white dark:text-white">welcoming new team members</strong> has never been easier. Experience the freedom to adapt and evolve effortlessly with our intuitive panel, where possibilities are limitless.</p>
+      </div>
+      <img class="" src="./images/avatars.png" alt="avatars" width="200" height="auto" draggable="false" />
+
+      <img class="hidden md:block absolute top-0 right-0 transform translate-x-1/3 translate-y-1/5 pt-5" src="./images/dashboard.png" alt="dashboard image" width="1000" height="auto" draggable="false" />
+  </div>
+      <!-- img start -->
+
+      <!-- img end -->
+  </section>
+
+
+  
+
+  <section class="span-bg relative overflow-hidden">
+    <div class="py-8 pb-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+
+
+      <p class="text-gray-500 sm:text-xl dark:text-gray-400 pb-4"> And with our cutting-edge dashboard, visualizing your team's progress and performance is as simple as a glance. Gain valuable insights, track key metrics, and stay informed every step of the way. Here's some more features of our dashboard panel ✨</p>
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+          <p class="mb-3 text-gray-500 dark:text-gray-400"><span class="text-xl font-bold text-white">Number one</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          <p class="mb-3 text-gray-500 dark:text-gray-400"><span class="text-xl font-bold text-white">Number two</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          <p class="mb-3 text-gray-500 dark:text-gray-400"><span class="text-xl font-bold text-white">Number three</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      </div>
+
+      <img class="pb-10" src="./images/modsb.png" alt="mods" width="300" height="auto" draggable="false" />
+
+</section>
+
+<!-- text section end -->
+
+
+<!-- CTA START (component) -->
+
+<section class="span-bg ">
+
+  <div class="cta-footer">
+    <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+      <div
+        class="flex flex-col items-center gap-4 rounded-lg bg-blue-600 p-6 shadow-lg sm:flex-row sm:justify-between"
+      >
+        <strong class="text-xl text-white sm:text-xl">
+          Find the best plan for your Project!
+        </strong>
+        
+        <a
+          class="inline-flex items-center gap-2 rounded-full border border-white bg-white px-8 py-3 text-blue-600 hover:bg-transparent hover:text-white focus:outline-none focus:ring active:bg-white/90"
+          href="plans.html"
+        >
+          <span class="text-sm font-medium"> Let's Get Started </span>
+    
+         
+        </a>
+      </div></div></div>
+
+</section>
+
+
+
+
+<!-- CTA END -->
+
+<!-- Footer start -->
+<footer class="footer-bg" id="footer">
+  <div class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+    <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
+      <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-200">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_7_2)">
+          <path d="M34 0H6C2.68629 0 0 2.68629 0 6V34C0 37.3137 2.68629 40 6 40H34C37.3137 40 40 37.3137 40 34V6C40 2.68629 37.3137 0 34 0Z" fill="black"/>
+          <path d="M17.2288 13.208C17.8901 13.3573 18.4128 13.688 18.7968 14.2C19.1915 14.7013 19.3888 15.2773 19.3888 15.928C19.3888 16.888 19.0581 17.64 18.3968 18.184C17.7355 18.728 16.8075 19 15.6128 19H10.0288V7.72H15.4368C16.5888 7.72 17.4901 7.976 18.1408 8.488C18.8021 9 19.1328 9.72 19.1328 10.648C19.1328 11.3093 18.9568 11.864 18.6048 12.312C18.2635 12.7493 17.8048 13.048 17.2288 13.208ZM13.1648 12.2H14.7488C15.5381 12.2 15.9328 11.8747 15.9328 11.224C15.9328 10.552 15.5381 10.216 14.7488 10.216H13.1648V12.2ZM14.9888 16.472C15.7781 16.472 16.1728 16.1413 16.1728 15.48C16.1728 15.1387 16.0661 14.8773 15.8528 14.696C15.6501 14.5147 15.3568 14.424 14.9728 14.424H13.1648V16.472H14.9888Z" fill="white"/>
+          <path d="M20.5 17C22.433 17 24 15.433 24 13.5C24 11.567 22.433 10 20.5 10C18.567 10 17 11.567 17 13.5C17 15.433 18.567 17 20.5 17Z" fill="black"/>
+          <path d="M29.8178 8.024L24.1218 21.272H20.7138L22.8578 16.616L19.1778 8.024H22.6658L24.5538 13.112L26.3778 8.024H29.8178Z" fill="white"/>
+          <path d="M13.9704 33L11.4904 29.32V33H8.35444V21.16H11.4904V27.544L13.9704 24.024H17.7304L14.1944 28.536L17.7944 33H13.9704ZM16.1218 28.504C16.1218 27.576 16.2871 26.7653 16.6178 26.072C16.9591 25.3787 17.4178 24.8453 17.9938 24.472C18.5805 24.0987 19.2311 23.912 19.9458 23.912C20.5645 23.912 21.0978 24.0347 21.5458 24.28C21.9938 24.5253 22.3405 24.856 22.5858 25.272V24.024H25.7218V33H22.5858V31.752C22.3405 32.168 21.9885 32.4987 21.5298 32.744C21.0818 32.9893 20.5538 33.112 19.9458 33.112C19.2311 33.112 18.5805 32.9253 17.9938 32.552C17.4178 32.1787 16.9591 31.6453 16.6178 30.952C16.2871 30.248 16.1218 29.432 16.1218 28.504ZM22.5858 28.504C22.5858 27.928 22.4258 27.4747 22.1058 27.144C21.7965 26.8133 21.4125 26.648 20.9538 26.648C20.4845 26.648 20.0951 26.8133 19.7858 27.144C19.4765 27.464 19.3218 27.9173 19.3218 28.504C19.3218 29.08 19.4765 29.5387 19.7858 29.88C20.0951 30.2107 20.4845 30.376 20.9538 30.376C21.4125 30.376 21.7965 30.2107 22.1058 29.88C22.4258 29.5493 22.5858 29.0907 22.5858 28.504ZM28.3408 23.944C29.3755 23.944 30.1968 24.2907 30.8048 24.984C31.4128 25.6667 31.7168 26.5947 31.7168 27.768V33H28.5808V28.184C28.5808 27.672 28.4475 27.272 28.1808 26.984C27.9141 26.6853 27.5568 26.536 27.1088 26.536C26.6395 26.536 26.2715 26.6853 26.0048 26.984C25.7381 27.272 25.6048 27.672 25.6048 28.184V33H22.4688V24.024H25.6048V25.304C25.8821 24.8987 26.2555 24.5733 26.7248 24.328C27.1941 24.072 27.7328 23.944 28.3408 23.944Z" fill="white"/>
+          </g>
+          <defs>
+          <clipPath id="clip0_7_2">
+          <rect width="40" height="40" fill="white"/>
+          </clipPath>
+          </defs>
+          </svg>
+        <span class="ml-3 text-xl font-bold text-white-200">ByKangaroo</span>
+      </a>
+      <p class="mt-2 text-sm text-gray-500">An amazing website template ✨</p>
+    </div>
+    <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 class="font-medium text-gray-500  sm:py-6 dark:text-gray-400 ">Navigation</h2>
+        <nav class="list-none mb-10">
+          <li>
+            <a  onclick="scrollToSection('#mainhero')" class="text-gray-600 hover:text-gray-300">Hero</a>
+          </li>
+          <li>
+            <a  onclick="scrollToSection('#hero')" class="text-gray-600 hover:text-gray-300">About Us</a>
+          </li>
+          <li>
+            <a  onclick="scrollToSection('#dmap')" class="text-gray-600 hover:text-gray-300"  >Advantages</a>
+          </li>
+          <li>
+            <a  onclick="scrollToSection('#footer')" class="text-gray-600 hover:text-gray-300"> <span>Footer</span></a>
+          </li>
+
+
+
+        </nav>
+      </div>
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 class="font-medium text-gray-500  sm:py-6 dark:text-gray-400 ">Pages</h2>
+        <nav class="list-none mb-10">
+          <li>
+            <a href="index.html" class="text-gray-600 hover:text-gray-300">Home</a>
+          </li>
+          <li>
+            <a href="staff.html" class="text-gray-600 hover:text-gray-300">Staff</a>
+          </li>
+          <li>
+            <a href="aboutus.html" class="text-gray-600 hover:text-gray-300">AboutUs</a>
+          </li>
+          <li>
+            <a href="faq.html" class="text-gray-600 hover:text-gray-300">FAQ</a>
+          </li>
+        </nav>
+      </div>
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 class="font-medium text-gray-500  sm:py-6 dark:text-gray-400 ">Social Medias</h2>
+        <nav class="list-none mb-10">
+          <li>
+            <a class="text-gray-600 hover:text-gray-300">Instagram</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-300">Facebook</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-300">Twitter</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-300">Discord</a>
+          </li>
+        </nav>
+      </div>
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 class="font-medium text-gray-500  sm:py-6 dark:text-gray-400 ">Other links</h2>
+        <nav class="list-none mb-10">
+          <li>
+            <a class="text-gray-600 hover:text-gray-300">Support</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-300">Contact</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-300">Misc</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-300">Terms of service</a>
+          </li>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="bg-gray-800">
+    <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+      <p  class="text-gray-500 text-sm text-center sm:text-left"><a href="https://www.kangaroodev.net">© Made by www.Kangaroodev.net — </a>
+        <a rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">crafted with ❤</a>
+      </p>
+      <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
+        <a class="text-gray-500">
+          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+          </svg>
+        </a>
+
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- footer end -->
+
+<!-- reveal script tag-->
+<script defer src="./scripts/reveal.js"></script>
+<script defer src="./scripts/modal-plans.js"></script>
+<script defer src="./scripts/modal-plans2.js"></script>
+<script defer src="./scripts/modal-plans3.js"></script>
+<script defer src="./scripts/modal-plans4.js"></script>
+<script defer src="./scripts/preloader.js"></script>
+
+
+</body>
+</html>
+
+
+
